@@ -6,16 +6,25 @@
 //  Copyright © 2017年 ObaTakeshi. All rights reserved.
 //
 
-import UIKit
+//import UIKit
+import SpriteKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let myView = MyView(frame: view.bounds)
-        myView.backgroundColor = UIColor.white
-        view.addSubview(myView)
+//        let myView = MyView(frame: view.bounds)
+//        myView.backgroundColor = UIColor.white
+//        view.addSubview(myView)
+        //SKViewを取得する。
+        let skView = self.view as! SKView?
+        
+        //SKViewと同じサイズのSKSceneインスタンスを生成する。
+        let scene = TestScene(size:(skView?.frame.size)!)
+        
+        //現在シーンを設定する。
+        skView?.presentScene(scene)
         
     }
 
