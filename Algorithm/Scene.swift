@@ -13,6 +13,9 @@ class TestScene:SKScene {
     let myBoundSize: CGSize = UIScreen.main.bounds.size
     var numeric: [Int] = []
     var linearShapeNode: SKShapeNode!
+    var i: Int = 0
+    var j: Int = 0
+    var start:Bool = false
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
@@ -22,15 +25,22 @@ class TestScene:SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.removeAllChildren()
-        bubblesort()
-        lineDraw()
+        start = !start
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if start == true {
+            self.removeAllChildren()
+            bubblesort()
+            lineDraw()
+        }
     }
     
     func shokika() {
         for i in 0...Int(myBoundSize.width / 5.0) {
             numeric.append(i+1)
         }
+        j = numeric.count - 1
     }
     
     func lineDraw() {
@@ -53,13 +63,21 @@ class TestScene:SKScene {
     }
     
     func bubblesort() {
-        for i in 0 ... numeric.count - 2 {
-            for j in (i+1 ... numeric.count - 1).reversed() {
-                if numeric[j] < numeric[j - 1] {
+        if i >= numeric.count - 1 {
+            i = 0
+        }
+        if j <= i {
+            j = numeric.count - 1
+            i += 1
+        }
+        if i < numeric.count - 1 {
+            if j > i {
+                if numeric[j] < numeric[j-1] {
                     let tmp = numeric[j]
                     numeric[j] = numeric[j-1]
                     numeric[j-1] = tmp
                 }
+                j -= 1
             }
         }
     }
