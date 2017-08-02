@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class TestScene:SKScene {
+class BubbleSortScene: SKScene {
     let myBoundSize: CGSize = UIScreen.main.bounds.size
     var numeric: [Int] = []
     var linearShapeNode: SKShapeNode!

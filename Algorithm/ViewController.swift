@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         let skView = self.view as! SKView?
         
         //SKViewと同じサイズのSKSceneインスタンスを生成する。
-        let scene = TestScene(size:(skView?.frame.size)!)
+        let scene = FirstSelectorScene(size:(skView?.frame.size)!)
         
         //現在シーンを設定する。
         skView?.presentScene(scene)
