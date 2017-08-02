@@ -17,12 +17,13 @@ class TestScene:SKScene {
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
         shokika()
+        shuffle()
         lineDraw()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.removeAllChildren()
-        shuffle()
+        bubblesort()
         lineDraw()
     }
     
