@@ -16,12 +16,13 @@ class BubbleSortScene: SKScene {
     var i: Int = 0
     var j: Int = 0
     var start: Bool = false
+    var end: Int = 0
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
         shokika()
         shuffle()
-        lineDraw(comp1: -1, comp2: -1)
+        lineDraw()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -29,10 +30,11 @@ class BubbleSortScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        if start == true {
+        if start == true && end != numeric.count - 1
+        {
             self.removeAllChildren()
             bubblesort()
-            lineDraw(comp1: j, comp2: j-1)
+            lineDraw()
         }
     }
     
@@ -43,7 +45,7 @@ class BubbleSortScene: SKScene {
         j = numeric.count - 1
     }
     
-    func lineDraw(comp1: Int, comp2: Int) {
+    func lineDraw() {
         for m in 0...numeric.count - 1 {
             var points = [CGPoint(x: Double(m)*5.0+2.5, y: 0),
                           CGPoint(x: Double(m)*5.0+2.5, y: Double(numeric[m]*7))]
@@ -68,6 +70,7 @@ class BubbleSortScene: SKScene {
     func bubblesort() {
         if i >= numeric.count - 1 {
             i = 0
+            end = 0
         }
         if j <= i {
             j = numeric.count - 1
@@ -79,6 +82,10 @@ class BubbleSortScene: SKScene {
                     let tmp = numeric[j]
                     numeric[j] = numeric[j-1]
                     numeric[j-1] = tmp
+                } else {
+                    if i == 0 {
+                        end += 1
+                    }
                 }
                 j -= 1
             }
