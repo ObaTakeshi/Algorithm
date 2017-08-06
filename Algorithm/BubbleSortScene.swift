@@ -26,16 +26,36 @@ class BubbleSortScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        start = !start
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            let touchedNode = self.atPoint(location)
+            
+            if touchedNode.name == "Back" {
+                let newScene = FirstSelectorScene(size: self.frame.size)
+                self.view?.presentScene(newScene)
+            } else {
+                start = !start
+            }
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
-        if start == true && end != numeric.count - 1
-        {
+        if start == true && end != numeric.count - 1 {
             self.removeAllChildren()
             bubblesort()
             lineDraw()
+        } else {
+            back()
         }
+    }
+    
+    func back() {
+        let backLabel = SKLabelNode()
+        backLabel.text = "Back"
+        backLabel.fontSize = 20
+        backLabel.position = CGPoint(x: 25, y: (self.view?.frame.maxY)! - 40)
+        backLabel.name = "Back"
+        self.addChild(backLabel)
     }
     
     func shokika() {
