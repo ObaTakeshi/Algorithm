@@ -9,7 +9,13 @@
 import Foundation
 import SpriteKit
 
-class HeapSortScene: BubbleSortScene {
+class HeapSortScene: SKScene {
+    let myBoundSize: CGSize = UIScreen.main.bounds.size
+    var numeric: [Int] = []
+    var linearShapeNode: SKShapeNode!
+    var i: Int = 0
+    var j: Int = 0
+    var start: Bool = false
     var downHeapEnd: Bool = false
     
     override func didMove(to view: SKView) {
@@ -34,26 +40,23 @@ class HeapSortScene: BubbleSortScene {
             let location = touch.location(in: self)
             let touchedNode = self.atPoint(location)
             
-            if (touchedNode.name == "Back"){
+            if touchedNode.name == "Back" {
                 let newScene = FirstSelectorScene(size: self.frame.size)
                 self.view?.presentScene(newScene)
+            } else {
+                start = !start
             }
-         else {
-            start = !start
         }
     }
-    }
     
-    override func shokika() {
+    func shokika() {
         numeric.append(0)
         for i in 0...Int(myBoundSize.width / 5.0 - 1) {
             numeric.append(i+1)
         }
-        i = numeric.count - 1
-        j = numeric.count / 2
     }
     
-    override func lineDraw() {
+    func lineDraw() {
         for m in 1...numeric.count - 1 {
             var points = [CGPoint(x: Double(m)*5.0-2.5, y: 0),
                           CGPoint(x: Double(m)*5.0-2.5, y: Double(numeric[m]*7))]
@@ -66,7 +69,7 @@ class HeapSortScene: BubbleSortScene {
         }
     }
     
-    override func shuffle() {
+    func shuffle() {
         for i in 1...numeric.count - 1 {
             let tmp1 = Int(arc4random()) % (numeric.count - 1)
             if tmp1 != 0 {
@@ -75,6 +78,8 @@ class HeapSortScene: BubbleSortScene {
                 numeric[i] = tmp
             }
         }
+        i = numeric.count - 1
+        j = numeric.count / 2
     }
     
     func back() {
