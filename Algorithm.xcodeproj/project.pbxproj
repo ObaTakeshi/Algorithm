@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		144CE4A31F32759A001F622C /* FirstSelecterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144CE4A21F32759A001F622C /* FirstSelecterScene.swift */; };
+		144CE4A51F36131F001F622C /* HeapSortScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144CE4A41F36131F001F622C /* HeapSortScene.swift */; };
 		14C572101F304C07005F97CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5720F1F304C07005F97CA /* AppDelegate.swift */; };
 		14C572121F304C07005F97CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C572111F304C07005F97CA /* ViewController.swift */; };
 		14C572151F304C07005F97CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C572131F304C07005F97CA /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		144CE4A21F32759A001F622C /* FirstSelecterScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstSelecterScene.swift; sourceTree = "<group>"; };
+		144CE4A41F36131F001F622C /* HeapSortScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeapSortScene.swift; sourceTree = "<group>"; };
 		14C5720C1F304C07005F97CA /* Algorithm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Algorithm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C5720F1F304C07005F97CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14C572111F304C07005F97CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				14C5721B1F304C07005F97CA /* Info.plist */,
 				14C572491F30FD11005F97CA /* BubbleSortScene.swift */,
 				144CE4A21F32759A001F622C /* FirstSelecterScene.swift */,
+				144CE4A41F36131F001F622C /* HeapSortScene.swift */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				144CE4A31F32759A001F622C /* FirstSelecterScene.swift in Sources */,
 				14C572121F304C07005F97CA /* ViewController.swift in Sources */,
 				14C572101F304C07005F97CA /* AppDelegate.swift in Sources */,
+				144CE4A51F36131F001F622C /* HeapSortScene.swift in Sources */,
 				14C5724A1F30FD11005F97CA /* BubbleSortScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

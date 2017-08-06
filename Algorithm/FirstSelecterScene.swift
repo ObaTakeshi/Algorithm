@@ -19,7 +19,8 @@ class FirstSelectorScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let _ = touches.first as UITouch? {
-            let scene = BubbleSortScene(size:self.frame.size)
+//            let scene = BubbleSortScene(size:self.frame.size)
+            let scene = HeapSortScene(size:self.frame.size)
             self.view?.presentScene(scene)
         }
     }
