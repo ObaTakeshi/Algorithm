@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 class HeapSortScene: BubbleSortScene {
+    var downHeapEnd: Bool = false
     
     override func didMove(to view: SKView) {
         shokika()
@@ -35,6 +36,7 @@ class HeapSortScene: BubbleSortScene {
             numeric.append(i+1)
         }
         i = numeric.count - 1
+        j = numeric.count / 2
     }
     
     override func lineDraw() {
@@ -43,7 +45,7 @@ class HeapSortScene: BubbleSortScene {
                           CGPoint(x: Double(m)*5.0-2.5, y: Double(numeric[m]*7))]
             linearShapeNode = SKShapeNode(points: &points,count: points.count)
             linearShapeNode.lineWidth = 5.0
-            if (m == j || m == i) && start == true {
+            if m == i && start == true {
                 linearShapeNode.strokeColor = UIColor.red
             }
             self.addChild(linearShapeNode)
@@ -62,13 +64,22 @@ class HeapSortScene: BubbleSortScene {
     }
     
     func heapsort() {
-        if i >= 2 {
-            let tmp = numeric[i]
-            numeric[i] = numeric[1]
-            numeric[1] = tmp
-            downHeap(start: 1, end: i-1)
+        if downHeapEnd == false {
+            if j > 0 {
+                downHeap(start: j, end: numeric.count - 1)
+            } else if j == 0 {
+                downHeapEnd = true
+            }
+            j -= 1
+        } else {
+            if i >= 2 {
+                let tmp = numeric[i]
+                numeric[i] = numeric[1]
+                numeric[1] = tmp
+                downHeap(start: 1, end: i-1)
+            }
+            i -= 1
         }
-        i -= 1
     }
     
     func downHeap(start: Int, end: Int) {
