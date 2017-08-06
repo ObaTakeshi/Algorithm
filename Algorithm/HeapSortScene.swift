@@ -16,9 +16,6 @@ class HeapSortScene: BubbleSortScene {
         shokika()
         shuffle()
         lineDraw()
-        for i in (1...numeric.count/2).reversed() {
-            downHeap(start: i, end: numeric.count - 1)
-        }
     }
     
     override func update(_ currentTime: TimeInterval) {
