@@ -13,7 +13,7 @@ class FirstSelectorScene: SKScene {
     override func didMove(to view: SKView) {
         let label = SKLabelNode()
         label.text = "Visualized Algorithm"
-        label.position = CGPoint(x: (self.view?.frame.midX)!, y: (self.view?.frame.maxY)! - label.fontSize)
+        label.position = CGPoint(x: (self.view?.frame.midX)!, y: (self.view?.frame.maxY)! - label.fontSize * 1.5)
         self.addChild(label)
         
         let bubbleLabel = SKLabelNode()
