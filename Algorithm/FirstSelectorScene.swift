@@ -13,20 +13,26 @@ class FirstSelectorScene: SKScene {
     override func didMove(to view: SKView) {
         let label = SKLabelNode()
         label.text = "Visualized Algorithm"
-        label.position = CGPoint(x: (self.view?.frame.midX)!, y: (self.view?.frame.midY)!)
+        label.position = CGPoint(x: (self.view?.frame.midX)!, y: (self.view?.frame.maxY)! - label.fontSize)
         self.addChild(label)
         
         let bubbleLabel = SKLabelNode()
         bubbleLabel.text = "BubbleSort"
-        bubbleLabel.position = CGPoint(x: (self.view?.frame.maxX)! / 3 * 2, y: (self.view?.frame.maxY)! / 3 * 2)
+        bubbleLabel.position = CGPoint(x: (self.view?.frame.midX)!, y: (self.view?.frame.maxY)! / 4 * 3)
         bubbleLabel.name = "BubbleSort"
         self.addChild(bubbleLabel)
         
         let heapLabel = SKLabelNode()
         heapLabel.text = "HeapSort"
-        heapLabel.position = CGPoint(x: (self.view?.frame.maxX)! / 3, y: (self.view?.frame.maxY)! / 3)
+        heapLabel.position = CGPoint(x: (self.view?.frame.midX)!, y: (self.view?.frame.maxY)! / 2)
         heapLabel.name = "HeapSort"
         self.addChild(heapLabel)
+        
+        let quickLabel = SKLabelNode()
+        quickLabel.text = "QuickSort"
+        quickLabel.position = CGPoint(x: (self.view?.frame.midX)!, y: (self.view?.frame.maxY)! / 4)
+        quickLabel.name = "QuickSort"
+        self.addChild(quickLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -39,6 +45,9 @@ class FirstSelectorScene: SKScene {
                 self.view?.presentScene(newScene)
             } else if touchedNode.name == "HeapSort" {
                 let newScene = HeapSortScene(size: self.frame.size)
+                self.view?.presentScene(newScene)
+            } else if touchedNode.name == "QuickSort" {
+                let newScene = QuickSortScene(size: self.frame.size)
                 self.view?.presentScene(newScene)
             }
         }
