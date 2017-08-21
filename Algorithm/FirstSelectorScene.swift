@@ -33,6 +33,12 @@ class FirstSelectorScene: SKScene {
         quickLabel.position = CGPoint(x: (self.view?.frame.midX)!, y: (self.view?.frame.maxY)! / 4)
         quickLabel.name = "QuickSort"
         self.addChild(quickLabel)
+        
+        let sleepLabel = SKLabelNode()
+        sleepLabel.text = "SleepSort"
+        sleepLabel.position = CGPoint(x: (self.view?.frame.midX)!, y: 0)
+        sleepLabel.name = "SleepSort"
+        self.addChild(sleepLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -48,6 +54,9 @@ class FirstSelectorScene: SKScene {
                 self.view?.presentScene(newScene)
             } else if touchedNode.name == "QuickSort" {
                 let newScene = QuickSortScene(size: self.frame.size)
+                self.view?.presentScene(newScene)
+            } else if touchedNode.name == "SleepSort" {
+                let newScene = SleepSortScene(size: self.frame.size)
                 self.view?.presentScene(newScene)
             }
         }
