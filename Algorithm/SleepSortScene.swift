@@ -20,6 +20,7 @@ class SleepSortScene: SKScene {
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
+        self.backgroundColor = UIColor.white
         shokika()
         shuffle()
         lineDraw()
@@ -57,7 +58,14 @@ class SleepSortScene: SKScene {
         backLabel.fontSize = 20
         backLabel.position = CGPoint(x: 25, y: (self.view?.frame.maxY)! - 40)
         backLabel.name = "Back"
+        backLabel.fontColor = UIColor.black
         self.addChild(backLabel)
+        
+        let fsLabel = SKLabelNode()
+        fsLabel.text = "46"
+        fsLabel.fontSize = 70
+        fsLabel.position = CGPoint(x: (self.view?.frame.maxX)! - fsLabel.fontSize / 2 - 10, y: 10)
+        self.addChild(fsLabel)
     }
     
     func shokika() {
@@ -93,6 +101,7 @@ class SleepSortScene: SKScene {
                               CGPoint(x: Double(numericAlt.count-1)*Double(lineWidth)+Double(lineWidth)/2.0, y: Double(numericAlt[numericAlt.count-1])*7.0/5.0*Double(lineWidth))]
                 linearShapeNode = SKShapeNode(points: &points,count: points.count)
                 linearShapeNode.lineWidth = lineWidth
+                linearShapeNode.strokeColor = UIColor.purple
                 self.addChild(linearShapeNode)
             }
         }
