@@ -90,7 +90,7 @@ class SleepSortScene: SKScene {
             if (numeric[m] == count) {
                 numericAlt.append(numeric[m])
                 var points = [CGPoint(x: Double(numericAlt.count-1)*Double(lineWidth)+Double(lineWidth)/2.0, y: 0),
-                              CGPoint(x: Double(numericAlt.count-1)*Double(lineWidth)+Double(lineWidth)/2.0, y: Double(numericAlt[numericAlt.count-1]*7/5)*Double(lineWidth))]
+                              CGPoint(x: Double(numericAlt.count-1)*Double(lineWidth)+Double(lineWidth)/2.0, y: Double(numericAlt[numericAlt.count-1])*7.0/5.0*Double(lineWidth))]
                 linearShapeNode = SKShapeNode(points: &points,count: points.count)
                 linearShapeNode.lineWidth = lineWidth
                 self.addChild(linearShapeNode)
