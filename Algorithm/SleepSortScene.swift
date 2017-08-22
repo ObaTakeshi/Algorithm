@@ -16,7 +16,7 @@ class SleepSortScene: SKScene {
     var linearShapeNode: SKShapeNode!
     var start: Bool = false
     var count: Int = 0
-    let lineWidth: CGFloat = 5.0
+    let lineWidth: Double = 5.0
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
@@ -61,17 +61,17 @@ class SleepSortScene: SKScene {
     }
     
     func shokika() {
-        for i in 0...Int(myBoundSize.width / lineWidth - 1) {
+        for i in 0...Int(myBoundSize.width / CGFloat(lineWidth)) - 1  {
             numeric.append(i+1)
         }
     }
     
     func lineDraw() {
         for m in 0...numeric.count - 1 {
-            var points = [CGPoint(x: Double(m)*Double(lineWidth)+Double(lineWidth)/2.0, y: 0),
-                          CGPoint(x: Double(m)*Double(lineWidth)+Double(lineWidth)/2.0, y: Double(numeric[m]*7/5)*Double(lineWidth))]
+            var points = [CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: 0),
+                          CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: Double(numeric[m])*7.0/5.0*lineWidth)]
             linearShapeNode = SKShapeNode(points: &points,count: points.count)
-            linearShapeNode.lineWidth = lineWidth
+            linearShapeNode.lineWidth = CGFloat(lineWidth)
             self.addChild(linearShapeNode)
         }
     }
@@ -89,10 +89,10 @@ class SleepSortScene: SKScene {
         for m in 0...numeric.count - 1 {
             if (numeric[m] == count) {
                 numericAlt.append(numeric[m])
-                var points = [CGPoint(x: Double(numericAlt.count-1)*Double(lineWidth)+Double(lineWidth)/2.0, y: 0),
-                              CGPoint(x: Double(numericAlt.count-1)*Double(lineWidth)+Double(lineWidth)/2.0, y: Double(numericAlt[numericAlt.count-1])*7.0/5.0*Double(lineWidth))]
+                var points = [CGPoint(x: Double(numericAlt.count-1)*lineWidth+lineWidth/2.0, y: 0),
+                              CGPoint(x: Double(numericAlt.count-1)*lineWidth+lineWidth/2.0, y: Double(numericAlt[numericAlt.count-1])*7.0/5.0*lineWidth)]
                 linearShapeNode = SKShapeNode(points: &points,count: points.count)
-                linearShapeNode.lineWidth = lineWidth
+                linearShapeNode.lineWidth = CGFloat(lineWidth)
                 self.addChild(linearShapeNode)
             }
         }
