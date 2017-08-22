@@ -69,7 +69,7 @@ class SleepSortScene: SKScene {
     func lineDraw() {
         for m in 0...numeric.count - 1 {
             var points = [CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: 0),
-                          CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: Double(numeric[m])*7.0/5.0*lineWidth)]
+                          CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: Double(numeric[m])*1.4*lineWidth)]
             linearShapeNode = SKShapeNode(points: &points,count: points.count)
             linearShapeNode.lineWidth = CGFloat(lineWidth)
             self.addChild(linearShapeNode)
@@ -90,7 +90,7 @@ class SleepSortScene: SKScene {
             if (numeric[m] == count) {
                 numericAlt.append(numeric[m])
                 var points = [CGPoint(x: Double(numericAlt.count-1)*lineWidth+lineWidth/2.0, y: 0),
-                              CGPoint(x: Double(numericAlt.count-1)*lineWidth+lineWidth/2.0, y: Double(numericAlt[numericAlt.count-1])*7.0/5.0*lineWidth)]
+                              CGPoint(x: Double(numericAlt.count-1)*lineWidth+lineWidth/2.0, y: Double(numericAlt[numericAlt.count-1])*1.4*lineWidth)]
                 linearShapeNode = SKShapeNode(points: &points,count: points.count)
                 linearShapeNode.lineWidth = CGFloat(lineWidth)
                 self.addChild(linearShapeNode)

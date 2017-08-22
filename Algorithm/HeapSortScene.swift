@@ -17,6 +17,7 @@ class HeapSortScene: SKScene {
     var j: Int = 0
     var start: Bool = false
     var downHeapEnd: Bool = false
+    let lineWidth: Double = 5.0
     
     override func didMove(to view: SKView) {
         shokika()
@@ -51,17 +52,17 @@ class HeapSortScene: SKScene {
     
     func shokika() {
         numeric.append(0)
-        for i in 0...Int(myBoundSize.width / 5.0 - 1) {
+        for i in 0...Int(myBoundSize.width / CGFloat(lineWidth)) - 1 {
             numeric.append(i+1)
         }
     }
     
     func lineDraw() {
         for m in 1...numeric.count - 1 {
-            var points = [CGPoint(x: Double(m)*5.0-2.5, y: 0),
-                          CGPoint(x: Double(m)*5.0-2.5, y: Double(numeric[m]*7))]
+            var points = [CGPoint(x: Double(m)*lineWidth-lineWidth/2.0, y: 0),
+                          CGPoint(x: Double(m)*lineWidth-lineWidth/2.0, y: Double(numeric[m])*1.4*lineWidth)]
             linearShapeNode = SKShapeNode(points: &points,count: points.count)
-            linearShapeNode.lineWidth = 5.0
+            linearShapeNode.lineWidth = CGFloat(lineWidth)
             if m == i && start == true {
                 linearShapeNode.strokeColor = UIColor.red
             }

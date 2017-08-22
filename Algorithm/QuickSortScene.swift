@@ -37,6 +37,7 @@ class QuickSortScene: SKScene {
     var pivot: Int = 0
     var start: Bool = false
     var stack = Stack()
+    let lineWidth: Double = 5.0
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
@@ -80,17 +81,17 @@ class QuickSortScene: SKScene {
     }
     
     func shokika() {
-        for i in 0...Int(myBoundSize.width / 5.0 - 1) {
+        for i in 0...Int(myBoundSize.width / CGFloat(lineWidth)) - 1 {
             numeric.append(i+1)
         }
     }
     
     func lineDraw() {
         for m in 0...numeric.count - 1 {
-            var points = [CGPoint(x: Double(m)*5.0+2.5, y: 0),
-                          CGPoint(x: Double(m)*5.0+2.5, y: Double(numeric[m]*7))]
+            var points = [CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: 0),
+                          CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: Double(numeric[m])*1.4*lineWidth)]
             linearShapeNode = SKShapeNode(points: &points,count: points.count)
-            linearShapeNode.lineWidth = 5.0
+            linearShapeNode.lineWidth = CGFloat(lineWidth)
             if (m == j || m == i) && start == true {
                 linearShapeNode.strokeColor = UIColor.red
             }
