@@ -47,6 +47,9 @@ class SleepSortScene: SKScene {
         } else if (start == true && count != numeric.count + 1) {
             sleepsort(count: count)
             count += 1
+        } else if (start == true && count == numeric.count + 1) {
+            back()
+            fs()
         } else {
             back()
         }
@@ -60,7 +63,9 @@ class SleepSortScene: SKScene {
         backLabel.name = "Back"
         backLabel.fontColor = UIColor.black
         self.addChild(backLabel)
-        
+    }
+    
+    func fs() {
         let fsLabel = SKLabelNode()
         fsLabel.text = "46"
         fsLabel.fontSize = 70
