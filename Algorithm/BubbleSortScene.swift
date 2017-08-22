@@ -17,7 +17,7 @@ class BubbleSortScene: SKScene {
     var j: Int = 0
     var start: Bool = false
     var end: Int = 0
-    let lineWidth: Double = 5.0
+    let lineWidth: Double = 10.0
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
@@ -68,10 +68,10 @@ class BubbleSortScene: SKScene {
     
     func lineDraw() {
         for m in 0...numeric.count - 1 {
-            var points = [CGPoint(x: Double(m)*lineWidth-lineWidth/2.0, y: 0),
-                          CGPoint(x: Double(m)*lineWidth-lineWidth/2.0, y: Double(numeric[m])*1.4*lineWidth)]
+            var points = [CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: 0),
+                          CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: Double(numeric[m])*1.4*lineWidth)]
             linearShapeNode = SKShapeNode(points: &points,count: points.count)
-            linearShapeNode.lineWidth = 5.0
+            linearShapeNode.lineWidth = CGFloat(lineWidth)
             if (m == j || m == i) && start == true {
                 linearShapeNode.strokeColor = UIColor.red
             }

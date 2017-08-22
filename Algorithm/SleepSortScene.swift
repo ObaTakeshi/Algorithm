@@ -80,6 +80,7 @@ class SleepSortScene: SKScene {
                           CGPoint(x: Double(m)*lineWidth+lineWidth/2.0, y: Double(numeric[m])*1.4*lineWidth)]
             linearShapeNode = SKShapeNode(points: &points,count: points.count)
             linearShapeNode.lineWidth = CGFloat(lineWidth)
+            linearShapeNode.strokeColor = UIColor.black
             self.addChild(linearShapeNode)
         }
     }

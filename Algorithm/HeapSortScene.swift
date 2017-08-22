@@ -17,7 +17,7 @@ class HeapSortScene: SKScene {
     var j: Int = 0
     var start: Bool = false
     var downHeapEnd: Bool = false
-    let lineWidth: Double = 5.0
+    let lineWidth: Double = 1.0
     
     override func didMove(to view: SKView) {
         shokika()

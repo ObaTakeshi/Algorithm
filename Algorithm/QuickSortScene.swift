@@ -37,7 +37,7 @@ class QuickSortScene: SKScene {
     var pivot: Int = 0
     var start: Bool = false
     var stack = Stack()
-    let lineWidth: Double = 5.0
+    let lineWidth: Double = 1.0
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
