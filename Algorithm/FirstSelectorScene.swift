@@ -39,6 +39,12 @@ class FirstSelectorScene: SKScene {
         sleepLabel.position = CGPoint(x: (self.view?.frame.midX)!, y: 0)
         sleepLabel.name = "SleepSort"
         self.addChild(sleepLabel)
+        
+        let kmeansLabel = SKLabelNode()
+        kmeansLabel.text = "K-means"
+        kmeansLabel.position = CGPoint(x: 0, y: 0)
+        kmeansLabel.name = "K-means"
+        self.addChild(kmeansLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -57,6 +63,9 @@ class FirstSelectorScene: SKScene {
                 self.view?.presentScene(newScene)
             } else if touchedNode.name == "SleepSort" {
                 let newScene = SleepSortScene(size: self.frame.size)
+                self.view?.presentScene(newScene)
+            } else if touchedNode.name == "K-means" {
+                let newScene = KmeansScene(size: self.frame.size)
                 self.view?.presentScene(newScene)
             }
         }
