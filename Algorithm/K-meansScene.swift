@@ -12,6 +12,10 @@ import SpriteKit
 class KmeansScene: SKScene {
     let myBoundSize: CGSize = UIScreen.main.bounds.size
     var point: [SKShapeNode] = []
+    var pointCount = 20
+    var cluster: [SKShapeNode] = []
+    var clusterCount = 3
+    var line: [SKShapeNode] = []
 //    var linearShapeNode: SKShapeNode!
 //    var i: Int = 0
 //    var j: Int = 0
@@ -21,7 +25,9 @@ class KmeansScene: SKScene {
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
-        pointDraw()
+        initDraw()
+        initRandom()
+        //line[0].removeFromParent()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -47,8 +53,9 @@ class KmeansScene: SKScene {
 //        }
     }
     
-    func pointDraw() {
-        for i in 0...19 {
+    func initDraw() {
+        let length = 5.0
+        for i in 0..<pointCount {
             let h = (arc4random_uniform(UInt32(myBoundSize.height)))
             let w = (arc4random_uniform(UInt32(myBoundSize.width)))
             
@@ -59,5 +66,33 @@ class KmeansScene: SKScene {
             self.addChild(point[i])
         }
         
+        for i in 0..<clusterCount {
+            let h = (arc4random_uniform(UInt32(myBoundSize.height)))
+            let w = (arc4random_uniform(UInt32(myBoundSize.width)))
+            
+            var points = [CGPoint(x:length, y:-length / 2.0),
+                          CGPoint(x:-length, y:-length / 2.0),
+                          CGPoint(x: 0.0, y: length),
+                          CGPoint(x:length, y:-length / 2.0)]
+            cluster.append(SKShapeNode(points: &points, count: points.count))
+            cluster[i].position.x = CGFloat(w)
+            cluster[i].position.y = CGFloat(h)
+            cluster[i].fillColor = UIColor.blue
+            self.addChild(cluster[i])
+        }
+    }
+    
+    func initRandom() {
+        for i in 0..<pointCount {
+            lineDraw(point: point[i], cluster: cluster[Int(arc4random_uniform(UInt32(clusterCount)))])
+        }
+    }
+    
+    func lineDraw(point: SKShapeNode, cluster: SKShapeNode) {
+        var points = [CGPoint(x: point.position.x, y: point.position.y),
+                      CGPoint(x: cluster.position.x, y: cluster.position.y)]
+        line.append(SKShapeNode(points: &points, count: points.count))
+        //linearShapeNode.lineWidth = CGFloat(lineWidth)
+        self.addChild(line.last!)
     }
 }
