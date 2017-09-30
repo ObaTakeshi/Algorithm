@@ -19,33 +19,26 @@ class KmeansScene: SKScene {
     var centerX = [CGFloat](repeating: 0, count: 3)
     var centerY = [CGFloat](repeating: 0, count: 3)
     var belongCluster: [Int] = []
-//    var linearShapeNode: SKShapeNode!
-//    var i: Int = 0
-//    var j: Int = 0
-//    var start: Bool = false
-//    var end: Int = 0
-//    let lineWidth: Double = 5.0
     
     //現在シーン設定時の呼び出しメソッド
     override func didMove(to view: SKView) {
         initDraw()
         initRandom()
-        //line[i].removeFromParent()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        clusterMove()
-//        for touch: AnyObject in touches {
-//            let location = touch.location(in: self)
-//            let touchedNode = self.atPoint(location)
-//
-//            if touchedNode.name == "Back" {
-//                let newScene = FirstSelectorScene(size: self.frame.size)
-//                self.view?.presentScene(newScene)
-//            } else {
-//                start = !start
-//            }
-//        }
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            let touchedNode = self.atPoint(location)
+
+            if touchedNode.name == "Back" {
+                let newScene = FirstSelectorScene(size: self.frame.size)
+                self.view?.presentScene(newScene)
+            } else {
+                clusterMove()
+                pointMove()
+            }
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -55,6 +48,15 @@ class KmeansScene: SKScene {
 //        } else {
 //
 //        }
+    }
+    
+    func back() {
+        let backLabel = SKLabelNode()
+        backLabel.text = "Back"
+        backLabel.fontSize = 20
+        backLabel.position = CGPoint(x: 25, y: (self.view?.frame.maxY)! - 40)
+        backLabel.name = "Back"
+        self.addChild(backLabel)
     }
     
     func initDraw() {
@@ -117,6 +119,27 @@ class KmeansScene: SKScene {
             cluster[i].position.x = centerX[i]
             cluster[i].position.y = centerY[i]
             self.addChild(cluster[i])
+        }
+    }
+    
+    func pointMove() {
+        lineRemove()
+        neighborhood()
+    }
+    
+    func neighborhood() {
+        var min: CGFloat = myBoundSize.width + myBoundSize.height
+        var minl: Int = 0
+        for i in 0..<pointCount {
+            min = myBoundSize.width + myBoundSize.height
+            for l in 0..<clusterCount {
+                if min > abs(point[i].position.x - cluster[l].position.x) + abs(point[i].position.y - cluster[l].position.y) {
+                    min = abs(point[i].position.x - cluster[l].position.x) + abs(point[i].position.y - cluster[l].position.y)
+                    minl = l
+                }
+            }
+            belongCluster[i] = minl
+            lineDraw(point: point[i], cluster: cluster[minl])
         }
     }
     
