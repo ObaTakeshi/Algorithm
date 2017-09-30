@@ -16,6 +16,9 @@ class KmeansScene: SKScene {
     var cluster: [SKShapeNode] = []
     var clusterCount = 3
     var line: [SKShapeNode] = []
+    var centerX = [CGFloat](repeating: 0, count: 3)
+    var centerY = [CGFloat](repeating: 0, count: 3)
+    var belongCluster: [Int] = []
 //    var linearShapeNode: SKShapeNode!
 //    var i: Int = 0
 //    var j: Int = 0
@@ -27,10 +30,11 @@ class KmeansScene: SKScene {
     override func didMove(to view: SKView) {
         initDraw()
         initRandom()
-        //line[0].removeFromParent()
+        //line[i].removeFromParent()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        clusterMove()
 //        for touch: AnyObject in touches {
 //            let location = touch.location(in: self)
 //            let touchedNode = self.atPoint(location)
@@ -84,7 +88,9 @@ class KmeansScene: SKScene {
     
     func initRandom() {
         for i in 0..<pointCount {
-            lineDraw(point: point[i], cluster: cluster[Int(arc4random_uniform(UInt32(clusterCount)))])
+            let tmp = Int(arc4random_uniform(UInt32(clusterCount)))
+            lineDraw(point: point[i], cluster: cluster[tmp])
+            belongCluster.append(tmp)
         }
     }
     
@@ -94,5 +100,42 @@ class KmeansScene: SKScene {
         line.append(SKShapeNode(points: &points, count: points.count))
         //linearShapeNode.lineWidth = CGFloat(lineWidth)
         self.addChild(line.last!)
+    }
+    
+    func lineRemove() {
+        for i in 0..<line.count {
+            line[i].removeFromParent()
+        }
+    }
+    
+    func clusterMove() {
+        center()
+        
+        for i in 0..<clusterCount {
+            cluster[i].removeFromParent()
+            
+            cluster[i].position.x = centerX[i]
+            cluster[i].position.y = centerY[i]
+            self.addChild(cluster[i])
+        }
+    }
+    
+    func center() {
+        var tmpX = [CGFloat](repeating: 0, count: clusterCount)
+        var tmpY = [CGFloat](repeating: 0, count: clusterCount)
+        var c = [Int](repeating: 0, count: clusterCount)
+        for i in 0..<pointCount {
+            for l in 0..<clusterCount {
+                if belongCluster[i] == l {
+                    tmpX[l] += point[i].position.x
+                    tmpY[l] += point[i].position.y
+                    c[l] += 1
+                }
+            }
+        }
+        for l in 0..<clusterCount {
+            centerX[l] = tmpX[l] / CGFloat(c[l])
+            centerY[l] = tmpY[l] / CGFloat(c[l])
+        }
     }
 }
